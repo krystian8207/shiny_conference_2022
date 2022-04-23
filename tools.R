@@ -49,12 +49,17 @@ gen_col_integer <- function(state, n_rows) {
   return(res)
 }
  
+gen_col_custom <- function(state, n_rows) {
+  eval(parse(text = state$customcode))
+}
+
 gen_column <- function(state, n_rows) {
   method <- switch(
     state$type,
     "numeric" = gen_col_numeric,
     "integer" = gen_col_integer,
-    "character" = gen_col_character
+    "character" = gen_col_character,
+    "custom" = gen_col_custom
   )
   res <- list(method(state, n_rows))
   names(res) <- state$name

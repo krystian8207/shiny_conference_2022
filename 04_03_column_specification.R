@@ -1,0 +1,1 @@
+# module wrapped into single app

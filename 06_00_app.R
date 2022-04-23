@@ -97,17 +97,17 @@ edit_panel_server <- function(id, var_id) {
       ns <- session$ns
       state <- reactiveVal(NULL)
       showModalUI(ns("modal"))
-
+      
       observeEvent(input$confirm, {
         state(get_state(input))
         session$userData$vars[[var_id]] <- state()
         session$userData$clear(session$userData$clear() + 1)
       })
-
+      
       output$name <- renderText({
         state()$name
       })
-
+      
       observeEvent(input$delete, {
         session$userData$vars[[var_id]] <- NULL
         removeUI(paste0("#", ns("container")))
@@ -136,7 +136,6 @@ ui <- fluidPage(
       )
     ),
     mainPanel(
-      downloadButton("downloadData", NULL, style = "position: fixed; top: 3px; right: 3px;"),
       DT::dataTableOutput("table")
     )
   )
@@ -184,15 +183,6 @@ server <- function(input, output, session) {
       httr::GET(paste0("http://numbersapi.com/", input$nrow))
     )
   })
-  
-  output$downloadData <- downloadHandler(
-    filename = function() {
-      paste("data-", Sys.Date(), ".csv", sep = "")
-    },
-    content = function(file) {
-      write.csv(res_table(), file)
-    }
-  )
 }
 
 shinyApp(ui, server)

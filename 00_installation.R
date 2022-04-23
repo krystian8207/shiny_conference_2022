@@ -1,0 +1,5 @@
+install.packages("magrittr")
+install.packages("shiny")
+install.packages("DT")
+install.packages("remotes")
+remotes::install_github("r-world-devs/shinyGizmo")

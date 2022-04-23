@@ -97,17 +97,17 @@ edit_panel_server <- function(id, var_id) {
       ns <- session$ns
       state <- reactiveVal(NULL)
       showModalUI(ns("modal"))
-
+      
       observeEvent(input$confirm, {
         state(get_state(input))
         session$userData$vars[[var_id]] <- state()
         session$userData$clear(session$userData$clear() + 1)
       })
-
+      
       output$name <- renderText({
         state()$name
       })
-
+      
       observeEvent(input$delete, {
         session$userData$vars[[var_id]] <- NULL
         removeUI(paste0("#", ns("container")))
@@ -117,13 +117,9 @@ edit_panel_server <- function(id, var_id) {
 }
 
 ui <- fluidPage(
-  tags$head(
-    shiny::tags$script(type = "text/javascript", src = "hidden_mode.js")
-  ),
   sidebarLayout(
     sidebarPanel(
       numericInput("nrow", "Number of rows", value = 50, min = 1, max = 1000, step = 1),
-      textOutput("number_facts"),
       div(id = "variables"),
       textInput("name", "Column name"),
       conditionalPanel(
@@ -136,7 +132,6 @@ ui <- fluidPage(
       )
     ),
     mainPanel(
-      downloadButton("downloadData", NULL, style = "position: fixed; top: 3px; right: 3px;"),
       DT::dataTableOutput("table")
     )
   )
@@ -177,22 +172,6 @@ server <- function(input, output, session) {
   observeEvent(session$userData$clear(), {
     updateTextInput(inputId = "name", value = "")
   }, ignoreInit = TRUE)
-  
-  output$number_facts <- renderText({
-    req(input$hidden_mode)
-    httr::content(
-      httr::GET(paste0("http://numbersapi.com/", input$nrow))
-    )
-  })
-  
-  output$downloadData <- downloadHandler(
-    filename = function() {
-      paste("data-", Sys.Date(), ".csv", sep = "")
-    },
-    content = function(file) {
-      write.csv(res_table(), file)
-    }
-  )
 }
 
 shinyApp(ui, server)
