@@ -90,17 +90,17 @@ edit_panel_ui <- function(id, name) {
   )
 }
 
-edit_panel_server <- function(id, var_id) {
+edit_panel_server <- function(id) {
   moduleServer(
     id, 
     function(input, output, session) {
       ns <- session$ns
       state <- reactiveVal(NULL)
-      showModalUI(ns("modal"))
+      showModalUI("modal")
 
       observeEvent(input$confirm, {
         state(get_state(input))
-        session$userData$vars[[var_id]] <- state()
+        session$userData$vars[[id]] <- state()
         session$userData$clear(session$userData$clear() + 1)
       })
 
@@ -109,7 +109,7 @@ edit_panel_server <- function(id, var_id) {
       })
 
       observeEvent(input$delete, {
-        session$userData$vars[[var_id]] <- NULL
+        session$userData$vars[[id]] <- NULL
         removeUI(paste0("#", ns("container")))
       }, ignoreInit = TRUE)
     }
@@ -155,7 +155,7 @@ server <- function(input, output, session) {
       edit_panel_ui(id, input$name),
       immediate = TRUE
     )
-    edit_panel_server(id, var_id = id)
+    edit_panel_server(id)
   })
   
   observeEvent(input$run, {
@@ -181,7 +181,7 @@ server <- function(input, output, session) {
   output$number_facts <- renderText({
     req(input$hidden_mode)
     httr::content(
-      httr::GET(paste0("http://numbersapi.com/", input$nrow))
+      httr::GET(glue("http://numbersapi.com/{input$nrow}"))
     )
   })
   

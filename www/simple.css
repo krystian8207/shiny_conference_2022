@@ -1,0 +1,16 @@
+body {
+  background-color: #f0f8ff;
+}
+
+form.well {
+  background-color: #ecf6ff;
+}
+
+div.well {
+  background-color: #e6f3ff;
+  border-radius: 20px;
+}
+
+.well button {
+  border-radius: 20px;
+}

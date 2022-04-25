@@ -11,7 +11,7 @@ column_ui <- function(id, name) {
     modalDialogUI(
       glue("{id}_modal"), 
       "Edit Panel",
-      footer = actionButton("confirm", "Confirm", `data-dismiss` = "modal")
+      footer = actionButton(glue("{id}_confirm"), "Confirm", `data-dismiss` = "modal")
     ),
     actionButton(glue("{id}_delete"), NULL, icon("trash-alt")),
     name
@@ -21,6 +21,10 @@ column_ui <- function(id, name) {
 column_server <- function(id, input, output, session) {
   observeEvent(input[[glue("{id}_delete")]], {
     removeUI(glue("#{id}"))
+  })
+  
+  observeEvent(input[[glue("{id}_confirm")]], {
+    print("modal closed")
   })
 }
 
@@ -59,10 +63,6 @@ server <- function(input, output, session) {
       immediate = TRUE
     )
     column_server(id, input, output, session)
-  })
-  
-  observeEvent(input$confirm, {
-    print("modal_closed")
   })
   
   observeEvent(input$run, {

@@ -1,10 +1,12 @@
 library(shiny)
 
+# Run button as conditionPanel (input.nrow > 0)
+# table output -> DT
+
 ui <- fluidPage(
   sidebarLayout(
     sidebarPanel(
       numericInput("nrow", "Number of rows", value = 50, min = 1, max = 1000, step = 1),
-      textOutput("number_facts"),
       div(id = "variables"),
       textInput("name", "Column name"),
       conditionalPanel(
@@ -13,12 +15,11 @@ ui <- fluidPage(
       ),
       conditionalPanel(
         "input.nrow > 0",
-        actionButton("run", NULL, icon = icon("play"), width = "100%")  
+        actionButton("run", NULL, icon = icon("play"), width = "100%")
       )
     ),
     mainPanel(
-      downloadButton("downloadData", NULL, style = "position: fixed; top: 3px; right: 3px;"),
-      DT::dataTableOutput("table")
+      tableOutput("table")
     )
   )
 )
@@ -35,10 +36,7 @@ server <- function(input, output, session) {
   })
   
   output$table <- DT::renderDataTable({
-    validate(need(
-      !is.null(my_table()),
-      "No table created."
-    ))
+    validate(need(!is.null(my_table()), message = "No table created."))
     my_table()
   }, options = list(
     paging = TRUE,

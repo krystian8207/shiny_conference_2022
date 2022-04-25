@@ -17,10 +17,12 @@ server <- function(input, output, session) {
 
   observeEvent(input$new, {
     print("new clicked")
+    print(input$new)
   })
   
   observeEvent(input$run, {
     print("run clicked")
+    print(input$run)
   })
 }
 
