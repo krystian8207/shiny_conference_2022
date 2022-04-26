@@ -1,6 +1,20 @@
-# Add css.
-# Add js.
-# Inside renderText display fact using numbers api.
+# In the below application:
+# 1. 
+# a) Attach 'hidden_mode.js' JS script.
+# b) Replace NULL in line 97 with proper code that uses 
+#    numbers API to display fact about input$nrow number.
+# Then run the application and type 'shiny' having the application open.
+# Please try to analyze 'hidden_mode.js' to find out how to revert the above effect.
+# 2. Attach 'custom.css' CSS file.
+# Run the application and check its new styling.
+# Try to play with modifying 
+# :root {
+#   --darker: #377290;
+#   --lighter: #d5ecff;
+#   --moredarker: #699EB5;
+#   --evenmore: #3D6B82;
+# }
+# values in 'custom.css' to apply custom colouring.
 
 library(shiny)
 library(shinyGizmo)
@@ -10,21 +24,25 @@ source("tools.R")
 
 ui <- fluidPage(
   tags$head(
-    shiny::tags$script(type = "text/javascript", src = "hidden_mode.js")
+    
   ),
   sidebarLayout(
     sidebarPanel(
+      h3("Table Generator"),
       numericInput("nrow", "Number of rows", value = 50, min = 1, max = 1000, step = 1),
       textOutput("number_facts"),
       div(id = "variables"),
-      textInput("name", "Column name"),
-      conditionalPanel(
-        "input.name != ''",
-        actionButton("new", NULL, icon = icon("plus"), width = "100%")  
+      div(
+        id = "define-vars",
+        textInput("name", "Column name"),
+        conditionalPanel(
+          "input.name != ''",
+          actionButton("new", NULL, icon = icon("plus"), width = "100%")  
+        )
       ),
       conditionalPanel(
         "input.nrow > 0 & $('#variables > div').length > 0",
-        actionButton("run", NULL, icon = icon("play"), width = "100%")  
+        actionButton("run", "Generate", width = "100%")  
       )
     ),
     mainPanel(
@@ -62,7 +80,8 @@ server <- function(input, output, session) {
     res_table()
   }, options = list(
     paging = TRUE,
-    pageLength = 10
+    pageLength = 10,
+    searching = FALSE
   ))
   
   observeEvent(session$userData$clear(), {

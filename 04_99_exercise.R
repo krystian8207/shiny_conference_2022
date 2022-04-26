@@ -1,4 +1,11 @@
-# Run gen table on run observer
+# gen_table function from tools.R is responsible to generate the target table.
+# It takes two arguments:
+# - states - list storing columns configuration
+# - n_rows - number of rows to generate
+#
+# Using gen_table function and proper application objects in "run" observer (line 59):
+# 1. Generate target application table.
+# 2. Update res_table reactive value with the created table.
 
 library(shiny)
 library(shinyGizmo)
@@ -9,16 +16,20 @@ source("tools.R")
 ui <- fluidPage(
   sidebarLayout(
     sidebarPanel(
+      h3("Table Generator"),
       numericInput("nrow", "Number of rows", value = 50, min = 1, max = 1000, step = 1),
       div(id = "variables"),
-      textInput("name", "Column name"),
-      conditionalPanel(
-        "input.name != ''",
-        actionButton("new", NULL, icon = icon("plus"), width = "100%")  
+      div(
+        id = "define-vars",
+        textInput("name", "Column name"),
+        conditionalPanel(
+          "input.name != ''",
+          actionButton("new", NULL, icon = icon("plus"), width = "100%")  
+        )
       ),
       conditionalPanel(
         "input.nrow > 0 & $('#variables > div').length > 0",
-        actionButton("run", NULL, icon = icon("play"), width = "100%")  
+        actionButton("run", "Generate", width = "100%")  
       )
     ),
     mainPanel(
@@ -56,7 +67,8 @@ server <- function(input, output, session) {
     res_table()
   }, options = list(
     paging = TRUE,
-    pageLength = 10
+    pageLength = 10,
+    searching = FALSE
   ))
   
   observeEvent(session$userData$clear(), {

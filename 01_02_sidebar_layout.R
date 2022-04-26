@@ -3,7 +3,10 @@ library(shiny)
 
 ui <- fluidPage(
   sidebarLayout(
-    sidebarPanel("Sidebar"),
+    sidebarPanel(
+      h3("Sidebar Title"),
+      "Sidebar"
+    ),
     mainPanel(
       div("I'm in the main panel"),
       "I'm here as well"

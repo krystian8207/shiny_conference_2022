@@ -368,7 +368,7 @@ div.row {
   background-image: url("../images/sort_desc_disabled.png");
 }
 .container-fluid table.dataTable tbody tr {
-  background-color: #d5ecff;
+  background-color: var(--lighter);
 }
 .container-fluid table.dataTable tbody tr.selected {
   background-color: #699eb5;
@@ -378,7 +378,7 @@ div.row {
   padding: 8px 10px;
 }
 .container-fluid table.dataTable.row-border tbody th, .container-fluid table.dataTable.row-border tbody td, .container-fluid table.dataTable.display tbody th, .container-fluid table.dataTable.display tbody td {
-  border-top: 1px solid #377290;
+  border-top: 1px solidvar(--darker);
 }
 .container-fluid table.dataTable.row-border tbody tr:first-child th,
 .container-fluid table.dataTable.row-border tbody tr:first-child td, .container-fluid table.dataTable.display tbody tr:first-child th,
@@ -386,12 +386,12 @@ div.row {
   border-top: none;
 }
 .container-fluid table.dataTable.cell-border tbody th, .container-fluid table.dataTable.cell-border tbody td {
-  border-top: 1px solid #377290;
-  border-right: 1px solid #377290;
+  border-top: 1px solidvar(--darker);
+  border-right: 1px solidvar(--darker);
 }
 .container-fluid table.dataTable.cell-border tbody tr th:first-child,
 .container-fluid table.dataTable.cell-border tbody tr td:first-child {
-  border-left: 1px solid #377290;
+  border-left: 1px solidvar(--darker);
 }
 .container-fluid table.dataTable.cell-border tbody tr:first-child th,
 .container-fluid table.dataTable.cell-border tbody tr:first-child td {
@@ -549,13 +549,13 @@ div.row {
   text-decoration: none !important;
   cursor: pointer;
   *cursor: hand;
-  color: #377290 !important;
+  color:var(--darker) !important;
   border: 1px solid transparent;
   border-radius: 2px;
 }
 .container-fluid .dataTables_wrapper .dataTables_paginate .paginate_button.current, 
 .container-fluid .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
-  color: #377290 !important;
+  color:var(--darker) !important;
   border: 1px solid #315463;
   background-color: #c9dce4;
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #c9dce4), color-stop(100%, #699eb5));
@@ -582,19 +582,19 @@ div.row {
 }
 .container-fluid .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
   color: white !important;
-  border: 1px solid #377290;
+  border: 1px solidvar(--darker);
   background-color: #85b7d1;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #85b7d1), color-stop(100%, #377290));
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #85b7d1), color-stop(100%,var(--darker)));
   /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top, #85b7d1 0%, #377290 100%);
+  background: -webkit-linear-gradient(top, #85b7d1 0%,var(--darker) 100%);
   /* Chrome10+,Safari5.1+ */
-  background: -moz-linear-gradient(top, #85b7d1 0%, #377290 100%);
+  background: -moz-linear-gradient(top, #85b7d1 0%,var(--darker) 100%);
   /* FF3.6+ */
-  background: -ms-linear-gradient(top, #85b7d1 0%, #377290 100%);
+  background: -ms-linear-gradient(top, #85b7d1 0%,var(--darker) 100%);
   /* IE10+ */
-  background: -o-linear-gradient(top, #85b7d1 0%, #377290 100%);
+  background: -o-linear-gradient(top, #85b7d1 0%,var(--darker) 100%);
   /* Opera 11.10+ */
-  background: linear-gradient(to bottom, #85b7d1 0%, #377290 100%);
+  background: linear-gradient(to bottom, #85b7d1 0%,var(--darker) 100%);
   /* W3C */
 }
 .container-fluid .dataTables_wrapper .dataTables_paginate .paginate_button:active {
@@ -641,7 +641,7 @@ div.row {
 .container-fluid .dataTables_wrapper .dataTables_info,
 .container-fluid .dataTables_wrapper .dataTables_processing,
 .container-fluid .dataTables_wrapper .dataTables_paginate {
-  color: #377290;
+  color:var(--darker);
 }
 .container-fluid .dataTables_wrapper .dataTables_scroll {
   clear: both;

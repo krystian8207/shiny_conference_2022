@@ -144,7 +144,7 @@ edit_panel_ui <- function(id, name) {
       conditionalPanel(
         "input.type == 'custom'",
         ns = ns,
-        textInput("customcode", "Custom code")
+        textInput(ns("customcode"), "Custom code")
       ),
       button = modalButtonUI(ns("modal"), NULL, icon = icon("pen")),
       footer = actionButton(ns("confirm"), "Confirm", `data-dismiss` = "modal")

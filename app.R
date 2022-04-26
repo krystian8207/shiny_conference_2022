@@ -1,6 +1,7 @@
 library(shiny)
 library(shinyGizmo)
 library(magrittr)
+library(glue)
 
 source("tools.R")
 
