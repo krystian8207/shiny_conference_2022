@@ -1,9 +1,9 @@
-# ready ui: two buttons: one for delete, the second one for edit
-# task is to insert when clicked new, remove when clicked delete (if easy)
-
-# Make sure clicking delete button removes panel.
-# Add proper id to confirm - print modal closed.
-# Extend conditionalPanel, what effect?
+# In the below app:
+# 1. Make sure clicking delete button removes wellPanel (line 30).
+# 2. Add correct id in observer listening to confirm button (line 33).
+# 3. Replace "run" button conditionalPanel with condition 
+# "input.nrow > 0 & $('#variables > div').length > 0".
+# Can you guess what effect does it have in the application?
 
 library(shiny)
 library(shinyGizmo)

@@ -1,8 +1,13 @@
-library(shiny)
+# In the below app:
+# 1. Wrap "run" button into conditionalPanel.
+# Make sure the condition checks if number of rows input (nrow) is positive.
+# 2. Replace tableOutput with dataTableOutput, and renderTable with renderDataTable.
+# What effect does the change have?
+# 3. Make sure the table is rendered only when it's not NULL.
+# To do so, please replace 'TRUE' in line 43 with proper condition.
 
-# Run button as conditionPanel (input.nrow > 0)
-# table output -> DT
-# Render table only when my_table() is not null
+library(shiny)
+library(DT)
 
 ui <- fluidPage(
   sidebarLayout(

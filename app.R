@@ -4,140 +4,35 @@ library(magrittr)
 
 source("tools.R")
 
-edit_panel_ui <- function(id, name) {
-  ns <- NS(id)
-  
-  wellPanel(
-    id = ns("container"),
-    modalDialogUI(
-      modalId = ns("modal"),
-      tagList(
-        textInput(ns("name"), "Column name", name),
-        selectInput(
-          ns("type"), "Column type", 
-          choices = c("numeric", "integer", "character", "custom"),
-          selected = "numeric"
-        ),
-        conditionalPanel(
-          "input.type == 'numeric'", 
-          ns = ns,
-          tabsetPanel(
-            id = ns("numtype"),
-            tabPanel(
-              "Range", 
-              value = "numrange",
-              sliderInput(ns("numminmax"), "Column range", min = 1, max = 20, value = c(5, 10), step = 1)    
-            ),
-            tabPanel(
-              "Distribution",
-              value = "numdistro",
-              selectInput(ns("numdistro"), "Distribution", choices = c("normal", "exponential"), selected = "normal"),
-              conditionalPanel(
-                "input.numdistro == 'normal'", ns = ns, 
-                numericInput(ns("normal_mean"), "Mean", value = 0),
-                numericInput(ns("normal_sd"), "SD", value = 1, min = 0)
-              ),
-              conditionalPanel(
-                "input.numdistro == 'exponential'", ns = ns, 
-                numericInput(ns("exponential_lambda"), "Lambda", value = 0)
-              )
-            )
-          )
-        ),
-        conditionalPanel(
-          "input.type == 'character'", 
-          ns = ns,
-          sliderInput(ns("charminmax"), "Number of characters", min = 1, max = 20, value = c(5, 10), step = 1),
-          selectInput(ns("charpattern"), "Pattern", choices = c("[[a-z][A-Z]]", "[a-z]", "[A-Z]", "[a-zA-Z0-9]"))
-        ),
-        conditionalPanel(
-          "input.type == 'integer'",
-          ns = ns,
-          tabsetPanel(
-            id = ns("inttype"),
-            tabPanel(
-              "Range", 
-              value = "intrange",
-              sliderInput(ns("intminmax"), "Column range", min = 1, max = 20, value = c(5, 10), step = 1)    
-            ),
-            tabPanel(
-              "Distribution",
-              value = "intdistro",
-              selectInput(ns("intdistro"), "Distribution", choices = c("binomial", "poisson"), selected = "binomial"),
-              conditionalPanel(
-                "input.intdistro == 'binomial'", ns = ns, 
-                numericInput(ns("binomial_size"), "Size", value = 10, min = 0, step = 1),
-                numericInput(ns("binomial_prob"), "Prob", value = 0.5, min = 0, max = 1)
-              ),
-              conditionalPanel(
-                "input.intdistro == 'poisson'", ns = ns, 
-                numericInput(ns("poisson_lambda"), "Lambda", value = 1, min = 0.1)
-              )   
-            )
-          )
-        ),
-        conditionalPanel(
-          "input.type == 'custom'",
-          ns = ns,
-          textInput("customcode", "Custom code")
-        )
-      ),
-      button = modalButtonUI(ns("modal"), NULL, icon = icon("pen")),
-      footer = actionButton(ns("confirm"), "Confirm", `data-dismiss` = "modal")
-    ),
-    actionButton(ns("delete"), NULL, icon = icon("trash-alt")),
-    textOutput(ns("name"), inline = TRUE)
-  )
-}
-
-edit_panel_server <- function(id) {
-  moduleServer(
-    id, 
-    function(input, output, session) {
-      ns <- session$ns
-      state <- reactiveVal(NULL)
-      showModalUI("modal")
-
-      observeEvent(input$confirm, {
-        state(get_state(input))
-        session$userData$vars[[id]] <- state()
-        session$userData$clear(session$userData$clear() + 1)
-      })
-
-      output$name <- renderText({
-        state()$name
-      })
-
-      observeEvent(input$delete, {
-        session$userData$vars[[id]] <- NULL
-        removeUI(paste0("#", ns("container")))
-      }, ignoreInit = TRUE)
-    }
-  )
-}
-
 ui <- fluidPage(
   tags$head(
-    shiny::tags$script(type = "text/javascript", src = "hidden_mode.js")
+    shiny::tags$script(type = "text/javascript", src = "hidden_mode.js"),
+    tags$link(rel = "stylesheet", type = "text/css", href = "custom.css")
   ),
   sidebarLayout(
     sidebarPanel(
+      h3("Table Generator"),
       numericInput("nrow", "Number of rows", value = 50, min = 1, max = 1000, step = 1),
       textOutput("number_facts"),
       div(id = "variables"),
-      textInput("name", "Column name"),
-      conditionalPanel(
-        "input.name != ''",
-        actionButton("new", NULL, icon = icon("plus"), width = "100%")  
+      div(
+        id = "define-var",
+        textInput("name", "Column name"),
+        conditionalPanel(
+          "input.name != ''",
+          actionButton("new", NULL, icon = icon("plus"), width = "100%")  
+        )
       ),
       conditionalPanel(
-        "input.nrow > 0 & $('#variables > div').length > 0", # exercise for conditionalPanel
-        actionButton("run", NULL, icon = icon("play"), width = "100%")  
-      )
+        "input.nrow > 0 & $('#variables > div').length > 0",
+        actionButton("run", "Generate", width = "100%")  
+      ),
+      width = 3
     ),
     mainPanel(
-      downloadButton("downloadData", NULL, style = "position: fixed; top: 3px; right: 3px;"),
-      DT::dataTableOutput("table")
+      downloadButton("downloadData", NULL),
+      DT::dataTableOutput("table"),
+      width = 9
     )
   )
 )
@@ -171,7 +66,8 @@ server <- function(input, output, session) {
     res_table()
   }, options = list(
     paging = TRUE,
-    pageLength = 10
+    pageLength = 10,
+    searching = FALSE
   ))
   
   observeEvent(session$userData$clear(), {
