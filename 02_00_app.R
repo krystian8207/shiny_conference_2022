@@ -26,7 +26,6 @@ server <- function(input, output, session) {
   
   observeEvent(input$run, {
     print("run clicked")
-    print(input$run)
   })
 }
 

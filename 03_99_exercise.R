@@ -1,14 +1,13 @@
 # In the below app:
-# 1. Make sure clicking delete button removes wellPanel (line 30).
-# 2. Add correct id in observer that listens to confirm button changes (line 33).
-# 3. Replace "run" button conditionalPanel with condition 
+# 1. Make sure (modifying observer callback in line 29) 
+# that clicking delete button removes wellPanel created in column_ui.
+# 2. Replace "run" button conditionalPanel with condition 
 # "input.nrow > 0 & $('#variables > div').length > 0".
 # Can you guess what effect does it have in the application?
 
 library(shiny)
 library(shinyGizmo)
 library(glue)
-library(magrittr)
 
 source("tools.R")
 
@@ -30,7 +29,7 @@ column_server <- function(id, input, output, session) {
     
   })
   
-  observeEvent(input[["proper_id_here"]], {
+  observeEvent(input[["{id}_confirm"]], {
     print("modal closed")
   })
   
@@ -74,7 +73,7 @@ server <- function(input, output, session) {
     insertUI(
       "#variables",
       where = "beforeEnd",
-      column_ui(id, input$name),
+      ui = column_ui(id, input$name),
       immediate = TRUE
     )
     column_server(id, input, output, session)

@@ -116,6 +116,7 @@ div.row {
   border: none;
   background-color: var(--middle);
   color: var(--bright);
+  box-shadow: none;
 }
 
 .modal-content {

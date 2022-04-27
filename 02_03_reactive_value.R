@@ -1,3 +1,8 @@
+# Rule:
+# rval <- reactiveVal(<initial-value>)  - initializing
+# rval(<new-value>) - reassigning
+# rval() - taking the value
+
 library(shiny)
 
 ui <- fluidPage(
@@ -19,7 +24,8 @@ server <- function(input, output, session) {
   observeEvent(input$x_max, {
     if (identical(input$x_max > 0, TRUE)) {
       x <- seq(0, input$x_max, by = 0.1)
-      plot_data(data.frame(x = x, y = sin(x)))
+      df <- data.frame(x = x, y = sin(x))
+      plot_data(df)
     } else {
       plot_data(NULL)
     }

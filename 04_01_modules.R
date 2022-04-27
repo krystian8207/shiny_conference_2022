@@ -1,7 +1,6 @@
 library(shiny)
 library(shinyGizmo)
 library(glue)
-library(magrittr)
 
 source("tools.R")
 
@@ -21,8 +20,6 @@ column_ui <- function(id, name) {
 
 column_server <- function(id) {
   moduleServer(id, function(input, output, session) {
-    ns <- session$ns
-
     showModalUI("modal")
     
     observeEvent(input[["delete"]], {
@@ -71,7 +68,7 @@ server <- function(input, output, session) {
     insertUI(
       "#variables",
       where = "beforeEnd",
-      column_ui(id, input$name),
+      ui = column_ui(id, input$name),
       immediate = TRUE
     )
     column_server(id)

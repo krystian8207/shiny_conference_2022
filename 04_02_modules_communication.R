@@ -30,9 +30,8 @@ column_server <- function(id) {
     })
     
     observeEvent(input[["confirm"]], {
-      session$userData$modal_closed(
-        session$userData$modal_closed() + 1
-      )
+      prev_val <- session$userData$modal_closed()
+      session$userData$modal_closed(prev_val + 1)
     })
     
     output[["outname"]] <- renderText({

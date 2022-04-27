@@ -24,7 +24,9 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
-  
+  observeEvent(input$my_button, {
+    print(input$my_button)
+  })
 }
 
 shinyApp(ui, server)
