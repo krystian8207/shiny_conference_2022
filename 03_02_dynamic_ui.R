@@ -1,4 +1,5 @@
 library(shiny)
+library(glue)
 
 ui <- fluidPage(
   actionButton("add", "Add"),

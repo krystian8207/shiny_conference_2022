@@ -24,12 +24,14 @@ ui <- fluidPage(
         )
       ),
       conditionalPanel(
-        "input.nrow > 0 & $('#variables > div').length > 0", # exercise for conditionalPanel
+        "input.nrow > 0 & $('#variables > div').length > 0",
         actionButton("run", "Generate", width = "100%")  
-      )
+      ),
+      width = 2
     ),
     mainPanel(
-      DT::dataTableOutput("table")
+      DT::dataTableOutput("table"),
+      width = 10
     )
   )
 )

@@ -11,12 +11,11 @@ column_ui <- function(id, name) {
     id = id,
     modalDialogUI(
       ns("modal"), 
-      textInput(ns("my_text"), "Put text here"),
-      numericInput(ns("my_number"), "Put number here", value = 1),
+      textInput(ns("name"), "Name", value = name),
       footer = actionButton(ns("confirm"), "Confirm", `data-dismiss` = "modal")
     ),
     actionButton(ns("delete"), NULL, icon("trash-alt")),
-    name
+    textOutput(ns("outname"), inline = TRUE)
   )
 }
 
@@ -33,6 +32,10 @@ column_server <- function(id) {
     observeEvent(input[["confirm"]], {
       print(reactiveValuesToList(input))
       print("modal closed")
+    })
+    
+    output[["outname"]] <- renderText({
+      input[["name"]]
     })
   })
 }

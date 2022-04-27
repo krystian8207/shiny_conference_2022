@@ -4,10 +4,7 @@ ui <- fluidPage(
   sidebarLayout(
     sidebarPanel(
       numericInput("x_max", "Maximum x axis value", value = 10),
-      conditionalPanel(
-        "input.x_max",
-        textInput("title", "Title")
-      )
+      textInput("title", "Title")
     ),
     mainPanel(
       plotOutput("sine"),

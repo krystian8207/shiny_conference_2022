@@ -1,7 +1,5 @@
 library(shiny)
-
-# Run button as conditionPanel (input.nrow > 0)
-# table output -> DT
+library(DT)
 
 ui <- fluidPage(
   sidebarLayout(

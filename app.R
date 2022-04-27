@@ -28,12 +28,12 @@ ui <- fluidPage(
         "input.nrow > 0 & $('#variables > div').length > 0",
         actionButton("run", "Generate", width = "100%")  
       ),
-      width = 3
+      width = 2
     ),
     mainPanel(
       downloadButton("downloadData", NULL),
       DT::dataTableOutput("table"),
-      width = 9
+      width = 10
     )
   )
 )

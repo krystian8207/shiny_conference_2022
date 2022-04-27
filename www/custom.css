@@ -1,22 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap');
 
 :root {
-  --darker: #377290;
-  --lighter: #d5ecff;
-  --moredarker: #699EB5;
-  --evenmore: #3D6B82;
+  --bright: #d5ecff;
+  --middle: #699EB5;
+  --dark: #377290;
+  --darker: #3D6B82;
 }
 
 body {
   font-family: Poppins, sans-serif;
-  color: var(--lighter);
+  color: var(--bright);
   height: 100vh;
   overflow: hidden;
-  background-color: var(--lighter);
+  background-color: var(--bright);
 }
 
 form.well {
-  background-color: var(--darker);
+  background-color: var(--dark);
   height: 100%;
   box-shadow: inset -30px 0 30px rgb(0, 0, 0, 0.2);
   margin: 0;
@@ -31,7 +31,7 @@ form.well {
     padding: 20px 0;
     border: none;
     border-radius: 0;
-    border-bottom: 1px solid var(--lighter);
+    border-bottom: 1px solid var(--bright);
     background: none;
 }
 
@@ -79,28 +79,28 @@ div.row {
 
 .container-fluid button {
   border: none;
-  background-color: var(--lighter);
-  color: var(--darker);
+  background-color: var(--bright);
+  color: var(--dark);
 }
 
 .container-fluid button:hover, 
 .container-fluid button:focus,
 .container-fluid button:active{
   border: none;
-  background-color: var(--moredarker);
-  color: var(--lighter);
+  background-color: var(--middle);
+  color: var(--bright);
 }
 
 #downloadData:focus, #downloadData:hover {
   border: 1px solid;
-  background-color: var(--lighter);
-  color: var(--moredarker);
+  background-color: var(--bright);
+  color: var(--middle);
 }
 
 #downloadData, #downloadData {
   border: none;
-  background-color: var(--darker);
-  color: var(--lighter);
+  background-color: var(--dark);
+  color: var(--bright);
   position: fixed; 
   bottom: 3px; 
   right: 3px;
@@ -108,18 +108,18 @@ div.row {
 
 .container-fluid input {
   border: none;
-  background-color: var(--lighter);
-  color: var(--darker);
+  background-color: var(--bright);
+  color: var(--dark);
 }
 
 .container-fluid input:focus, .container-fluid input:hover {
   border: none;
-  background-color: var(--moredarker);
-  color: var(--lighter);
+  background-color: var(--middle);
+  color: var(--bright);
 }
 
 .modal-content {
-  background-color: var(--darker);
+  background-color: var(--dark);
   padding: 20px;
 }
 
@@ -127,28 +127,28 @@ div.row {
 .container-fluid .selectize-control.single .selectize-input.full:hover,
 .container-fluid .selectize-dropdown:hover {
   border: none;
-  background-color: var(--moredarker);
-  color: var(--lighter);
+  background-color: var(--middle);
+  color: var(--bright);
 }
 
 .container-fluid .selectize-input, 
 .container-fluid .selectize-control.single .selectize-input.full,
 .container-fluid .selectize-dropdown {
   border: none;
-  background-color: var(--lighter);
-  color: var(--darker);
+  background-color: var(--bright);
+  color: var(--dark);
 }
 
 .container-fluid .selectize-dropdown .active {
   border: none;
-  background-color: var(--lighter);
-  color: var(--darker);
+  background-color: var(--bright);
+  color: var(--dark);
 }
 
 #variables .tabbable li.active a, #variables .tabbable li.active a:hover {
     border: none;
     background: none;
-    color: var(--lighter);
+    color: var(--bright);
     border-bottom: 4px solid;
     font-weight: 600;
 }
@@ -156,7 +156,7 @@ div.row {
 #variables .tabbable li a, #variables .tabbable li a:hover {
     border: none;
     background: none;
-    color: var(--lighter);
+    color: var(--bright);
 }
 
 #variables .tab-content {
@@ -164,16 +164,16 @@ div.row {
 }
 
 .container-fluid .irs--shiny .irs-bar {
-  border-top: 1px solid var(--moredarker);
-  border-bottom: 1px solid var(--moredarker);
-  background: var(--moredarker);
+  border-top: 1px solid var(--middle);
+  border-bottom: 1px solid var(--middle);
+  background: var(--middle);
 }
 
 .container-fluid .irs--shiny .irs-from, 
 .container-fluid .irs--shiny .irs-to, 
 .container-fluid .irs--shiny .irs-single {
-  color: var(--evenmore);
-  background-color: var(--lighter);
+  color: var(--darker);
+  background-color: var(--bright);
 }
 
 .container-fluid .irs--shiny .irs-min, 
@@ -213,7 +213,7 @@ div.row {
 .container-fluid .dataTables_wrapper .dataTables_info, 
 .container-fluid .dataTables_wrapper .dataTables_processing, 
 .container-fluid .dataTables_wrapper .dataTables_paginate {
-    color: var(--darker);
+    color: var(--dark);
 }
 
 .container-fluid table.dataTable th.dt-left,
@@ -373,7 +373,7 @@ div.row {
   background-image: url("../images/sort_desc_disabled.png");
 }
 .container-fluid table.dataTable tbody tr {
-  background-color: var(--lighter);
+  background-color: var(--bright);
 }
 .container-fluid table.dataTable tbody tr.selected {
   background-color: #699eb5;
@@ -383,7 +383,7 @@ div.row {
   padding: 8px 10px;
 }
 .container-fluid table.dataTable.row-border tbody th, .container-fluid table.dataTable.row-border tbody td, .container-fluid table.dataTable.display tbody th, .container-fluid table.dataTable.display tbody td {
-  border-top: 1px solidvar(--darker);
+  border-top: 1px solidvar(--dark);
 }
 .container-fluid table.dataTable.row-border tbody tr:first-child th,
 .container-fluid table.dataTable.row-border tbody tr:first-child td, .container-fluid table.dataTable.display tbody tr:first-child th,
@@ -391,12 +391,12 @@ div.row {
   border-top: none;
 }
 .container-fluid table.dataTable.cell-border tbody th, .container-fluid table.dataTable.cell-border tbody td {
-  border-top: 1px solidvar(--darker);
-  border-right: 1px solidvar(--darker);
+  border-top: 1px solidvar(--dark);
+  border-right: 1px solidvar(--dark);
 }
 .container-fluid table.dataTable.cell-border tbody tr th:first-child,
 .container-fluid table.dataTable.cell-border tbody tr td:first-child {
-  border-left: 1px solidvar(--darker);
+  border-left: 1px solidvar(--dark);
 }
 .container-fluid table.dataTable.cell-border tbody tr:first-child th,
 .container-fluid table.dataTable.cell-border tbody tr:first-child td {
@@ -554,13 +554,13 @@ div.row {
   text-decoration: none !important;
   cursor: pointer;
   *cursor: hand;
-  color:var(--darker) !important;
+  color:var(--dark) !important;
   border: 1px solid transparent;
   border-radius: 2px;
 }
 .container-fluid .dataTables_wrapper .dataTables_paginate .paginate_button.current, 
 .container-fluid .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
-  color:var(--darker) !important;
+  color:var(--dark) !important;
   border: 1px solid #315463;
   background-color: #c9dce4;
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #c9dce4), color-stop(100%, #699eb5));
@@ -587,19 +587,19 @@ div.row {
 }
 .container-fluid .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
   color: white !important;
-  border: 1px solidvar(--darker);
+  border: 1px solidvar(--dark);
   background-color: #85b7d1;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #85b7d1), color-stop(100%,var(--darker)));
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #85b7d1), color-stop(100%,var(--dark)));
   /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top, #85b7d1 0%,var(--darker) 100%);
+  background: -webkit-linear-gradient(top, #85b7d1 0%,var(--dark) 100%);
   /* Chrome10+,Safari5.1+ */
-  background: -moz-linear-gradient(top, #85b7d1 0%,var(--darker) 100%);
+  background: -moz-linear-gradient(top, #85b7d1 0%,var(--dark) 100%);
   /* FF3.6+ */
-  background: -ms-linear-gradient(top, #85b7d1 0%,var(--darker) 100%);
+  background: -ms-linear-gradient(top, #85b7d1 0%,var(--dark) 100%);
   /* IE10+ */
-  background: -o-linear-gradient(top, #85b7d1 0%,var(--darker) 100%);
+  background: -o-linear-gradient(top, #85b7d1 0%,var(--dark) 100%);
   /* Opera 11.10+ */
-  background: linear-gradient(to bottom, #85b7d1 0%,var(--darker) 100%);
+  background: linear-gradient(to bottom, #85b7d1 0%,var(--dark) 100%);
   /* W3C */
 }
 .container-fluid .dataTables_wrapper .dataTables_paginate .paginate_button:active {
@@ -646,7 +646,7 @@ div.row {
 .container-fluid .dataTables_wrapper .dataTables_info,
 .container-fluid .dataTables_wrapper .dataTables_processing,
 .container-fluid .dataTables_wrapper .dataTables_paginate {
-  color:var(--darker);
+  color:var(--dark);
 }
 .container-fluid .dataTables_wrapper .dataTables_scroll {
   clear: both;

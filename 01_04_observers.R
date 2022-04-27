@@ -14,6 +14,10 @@ server <- function(input, output, session) {
     print("Slider changed")
     print(input[["my_slider_one"]])
   })
+  
+  observeEvent(input$my_button, {
+    updateSliderInput(session, "my_slider_one", value = sample(1:10, 1))
+  })
 }
 
 shinyApp(ui, server)

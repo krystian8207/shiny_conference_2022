@@ -1,10 +1,11 @@
 # In the below application:
 # 1. 
 # a) Attach 'hidden_mode.js' JS script.
-# b) Replace NULL in line 97 with proper code that uses 
+# b) Replace NULL in line 101 with proper code that uses 
 #    numbers API to display fact about input$nrow number.
 # Then run the application and type 'shiny' having the application open.
 # Please try to analyze 'hidden_mode.js' to find out how to revert the above effect.
+# 
 # 2. Attach 'custom.css' CSS file.
 # Run the application and check its new styling.
 # Try to play with modifying 
@@ -19,6 +20,7 @@
 library(shiny)
 library(shinyGizmo)
 library(magrittr)
+library(glue)
 
 source("tools.R")
 
@@ -43,10 +45,12 @@ ui <- fluidPage(
       conditionalPanel(
         "input.nrow > 0 & $('#variables > div').length > 0",
         actionButton("run", "Generate", width = "100%")  
-      )
+      ),
+      width = 2
     ),
     mainPanel(
-      DT::dataTableOutput("table")
+      DT::dataTableOutput("table"),
+      width = 10
     )
   )
 )

@@ -3,13 +3,14 @@
 # - states - list storing columns configuration
 # - n_rows - number of rows to generate
 #
-# Using gen_table function and proper application objects in "run" observer (line 59):
+# Using gen_table function and proper application objects in "run" observer (line 62):
 # 1. Generate target application table.
 # 2. Update res_table reactive value with the created table.
 
 library(shiny)
 library(shinyGizmo)
 library(magrittr)
+library(glue)
 
 source("tools.R")
 
@@ -30,10 +31,12 @@ ui <- fluidPage(
       conditionalPanel(
         "input.nrow > 0 & $('#variables > div').length > 0",
         actionButton("run", "Generate", width = "100%")  
-      )
+      ),
+      width = 2
     ),
     mainPanel(
-      DT::dataTableOutput("table")
+      DT::dataTableOutput("table"),
+      width = 10
     )
   )
 )

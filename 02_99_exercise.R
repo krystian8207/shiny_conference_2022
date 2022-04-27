@@ -2,7 +2,7 @@
 # 1. Wrap "run" button into conditionalPanel.
 # Make sure the condition checks if number of rows input (nrow) is positive.
 # 2. Replace tableOutput with dataTableOutput, and renderTable with renderDataTable.
-# What effect does the change have?
+# What effect does the change have on the resulted table?
 # 3. Make sure the table is rendered only when it's not NULL.
 # To do so, please replace 'TRUE' in line 46 with proper condition.
 

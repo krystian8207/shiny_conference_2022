@@ -92,6 +92,7 @@ server <- function(input, output, session) {
   
   observeEvent(input$confirm, {
     state(get_state(input))
+    print(state())
     session$userData$vars[[name]] <- state()
     session$userData$clear(session$userData$clear() + 1)
   })
