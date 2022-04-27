@@ -17,7 +17,7 @@ ui <- fluidPage(
   sidebarLayout(
     sidebarPanel(
       h3("Table Generator"),
-      numericInput(inputId = "my_number", label = "Number of rows", value = 0, min = 1, max = 150, step = 1),
+      numericInput(inputId = "my_number", label = "Number of rows", value = 1, min = 1, max = 150, step = 1),
       div(id = "variables"),
       div(
         id = "define-vars",
