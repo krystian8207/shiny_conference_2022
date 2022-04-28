@@ -1,8 +1,5 @@
 # In the below application:
-# 1. 
-# a) Attach 'hidden_mode.js' JS script.
-# b) Replace NULL in line 101 with proper code that uses 
-#    numbers API to display fact about input$nrow number.
+# 1. Attach 'hidden_mode.js' JS script.
 # Then run the application and type 'shiny' having the application open.
 # Please try to analyze 'hidden_mode.js' to find out how to revert the above effect.
 # 
@@ -98,7 +95,13 @@ server <- function(input, output, session) {
   
   output$number_facts <- renderText({
     req(input$hidden_mode)
-    NULL
+    res <- httr::GET(glue("http://numbersapi.com/{input$nrow}"))
+    if (res$status_code == 200) {
+      fact <- httr::content(res)
+    } else {
+      fact <- "No response"
+    }
+    fact
   })
 }
 
