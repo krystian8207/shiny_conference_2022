@@ -7,10 +7,10 @@
 # Run the application and check its new styling.
 # Try to play with modifying 
 # :root {
-#   --darker: #377290;
-#   --lighter: #d5ecff;
-#   --moredarker: #699EB5;
-#   --evenmore: #3D6B82;
+#   --bright: #d5ecff;
+#   --middle: #699EB5;
+#   --dark: #377290;
+#   --darker: #3D6B82;
 # }
 # values in 'custom.css' to apply custom colouring.
 
