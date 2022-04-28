@@ -49,7 +49,7 @@ server <- function(input, output, session) {
   })
   
   observeEvent(input$run, {
-    req(!is.null(session$userData$vars))
+    req(length(session$userData$vars) > 0)
     res_table(gen_table(session$userData$vars, input$nrow))
   })
   

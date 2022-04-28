@@ -1,4 +1,4 @@
-# gen_table function from tools.R is responsible to generate the target table.
+# gen_table function from tools.R is responsible for generating the target table.
 # It takes two arguments:
 # - states - list storing columns configuration
 # - n_rows - number of rows to generate
@@ -58,7 +58,7 @@ server <- function(input, output, session) {
   })
   
   observeEvent(input$run, {
-    req(!is.null(session$userData$vars))
+    req(length(session$userData$vars) > 0)
     
   })
   

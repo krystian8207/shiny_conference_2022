@@ -1,7 +1,7 @@
 # Rule:
 # rval <- reactiveVal(<initial-value>)  - initializing
-# rval(<new-value>) - reassigning
 # rval() - taking the value
+# rval(<new-value>) - reassigning
 
 library(shiny)
 
@@ -33,7 +33,7 @@ server <- function(input, output, session) {
   
   output$sine <- renderPlot({
     validate(need(!is.null(plot_data()), message = "No valid data"))
-    plot(plot_data()$x, plot_data()$y, type = "l")
+    plot(plot_data()$x, plot_data()$y, main = input$title, type = "l")
   })
   
   output$plot_table <- renderTable({

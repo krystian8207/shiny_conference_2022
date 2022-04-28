@@ -21,7 +21,7 @@ ui <- fluidPage(
       )
     ),
     mainPanel(
-      tableOutput("table")
+      dataTableOutput("table")
     )
   )
 )
@@ -37,7 +37,7 @@ server <- function(input, output, session) {
     my_table(iris[1:input$nrow, ])
   })
   
-  output$table <- DT::renderDataTable({
+  output$table <- renderDataTable({
     validate(need(!is.null(my_table()), message = "No table created."))
     my_table()
   }, options = list(
